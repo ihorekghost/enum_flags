@@ -22,10 +22,12 @@ pub fn fieldsUnique(comptime Flag: type) bool {
 ///}
 ///```
 ///enabling flag `bar` will also enable flag `foo`. If you want to avoid this behaviour, make sure all of your flags values are unique powers of two. `fieldsUnique(...)` can help with this.
-pub fn EnumFlags(comptime Flag: type) type {
-    const enum_info = @typeInfo(Flag).@"enum";
+pub fn EnumFlags(comptime T: type) type {
+    const enum_info = @typeInfo(T).@"enum";
 
     return packed struct {
+        pub const Flag = T;
+
         pub const bit_length = @typeInfo(enum_info.tag_type).int.bits;
 
         bits: enum_info.tag_type,

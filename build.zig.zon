@@ -11,5 +11,6 @@
         "src",
         "LICENSE",
         "README.md",
+        ".gitignore",
     },
 }
